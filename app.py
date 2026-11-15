@@ -176,4 +176,4 @@ Predicción
 # EQUIPO
 # ==================================================
 
-st.subheader("👩‍🎓 Equipo del Proyecto
+st.subheader("👩‍🎓 Equipo del Proyecto")
