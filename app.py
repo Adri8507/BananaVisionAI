@@ -3,7 +3,7 @@ import requests
 import pandas as pd
 
 # ==================================================
-# CONFIGURACIÓN GENERAL
+# CONFIGURACIÓN
 # ==================================================
 
 st.set_page_config(
@@ -21,35 +21,26 @@ API_PREDICT = "https://ca-bananavision-api.politestone-cecff6e5.westus2.azurecon
 
 st.markdown("""
 <style>
-
-.stApp{
-    background: linear-gradient(180deg,#FFFDF5,#FFF7D6);
+.stApp {
+    background-color: #FFFDF5;
 }
 
-.header-container{
-    background: linear-gradient(90deg,#FFE259,#FFA751);
-    padding:25px;
-    border-radius:20px;
+.titulo {
+    text-align: center;
+    color: #D97706;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.subtitulo {
+    text-align: center;
+    font-size: 20px;
+}
+
+.footer {
     text-align:center;
+    color: gray;
 }
-
-.titulo{
-    font-size:50px;
-    font-weight:900;
-    color:#1F2937;
-}
-
-.subtitulo{
-    font-size:18px;
-    color:#374151;
-}
-
-.footer{
-    text-align:center;
-    color:gray;
-    font-size:14px;
-}
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -57,31 +48,20 @@ st.markdown("""
 # ENCABEZADO
 # ==================================================
 
-st.markdown("""
-<div class="header-container">
+st.markdown(
+    '<p class="titulo">🍌 BananaVision AI</p>',
+    unsafe_allow_html=True
+)
 
-<div class="titulo">
-🍌 BananaVision AI
-</div>
+st.markdown(
+    '<p class="subtitulo">Sistema Inteligente para Clasificación de Madurez de Bananos</p>',
+    unsafe_allow_html=True
+)
 
-<div class="subtitulo">
+st.write("### Proyecto Final - Visión por Computador")
+st.write("### Maestría en Inteligencia Artificial")
 
-Sistema Inteligente de Clasificación de Madurez de Bananos
-
-<br><br>
-
-Proyecto Final de Visión por Computador
-
-<br><br>
-
-Maestría en Inteligencia Artificial
-
-</div>
-
-</div>
-""", unsafe_allow_html=True)
-
-st.write("")
+st.divider()
 
 # ==================================================
 # OBJETIVO
@@ -89,24 +69,10 @@ st.write("")
 
 with st.expander("🎯 Objetivo del Proyecto", expanded=True):
 
-    st.markdown("""
-
-### Objetivo General
-
-Desarrollar una aplicación web basada en Inteligencia Artificial capaz de identificar automáticamente el estado de maduración de un banano a partir del análisis de imágenes digitales.
-
-### Objetivos Específicos
-
-✅ Implementar técnicas de visión por computador.
-
-✅ Clasificar imágenes mediante Deep Learning.
-
-✅ Integrar una API REST desplegada en Microsoft Azure.
-
-✅ Permitir predicciones en tiempo real.
-
-✅ Facilitar procesos de control de calidad y clasificación de fruta.
-
+    st.write("""
+Desarrollar una aplicación web basada en Inteligencia Artificial capaz de identificar
+automáticamente el estado de maduración de un banano a partir de imágenes digitales,
+integrando Visión por Computador, Deep Learning y servicios en la nube.
 """)
 
 # ==================================================
@@ -115,37 +81,13 @@ Desarrollar una aplicación web basada en Inteligencia Artificial capaz de ident
 
 with st.expander("📖 Descripción de la Aplicación"):
 
-    st.markdown("""
+    st.write("""
+BananaVision AI permite analizar imágenes de bananos utilizando un modelo de
+Deep Learning desplegado en Microsoft Azure.
 
-### ¿Qué es BananaVision AI?
-
-BananaVision AI es una aplicación desarrollada para clasificar automáticamente el estado de maduración de bananos utilizando técnicas de Inteligencia Artificial y Visión por Computador.
-
-La aplicación permite cargar imágenes del fruto y obtener una predicción automática mediante un modelo de Deep Learning desplegado en Microsoft Azure.
-
-### Tecnologías Utilizadas
-
-✅ Python
-
-✅ Streamlit
-
-✅ FastAPI
-
-✅ Microsoft Azure
-
-✅ Deep Learning
-
-✅ Computer Vision
-
-### Flujo de Funcionamiento
-
-1. El usuario selecciona una imagen.
-2. La imagen se envía a la API alojada en Azure.
-3. El modelo procesa la imagen.
-4. Se genera una predicción.
-5. Se muestran probabilidades y nivel de confianza.
-6. Se interpreta el resultado para el usuario.
-
+El usuario carga una imagen y la aplicación envía la fotografía a una API REST,
+la cual devuelve la categoría detectada, la confianza y las probabilidades
+de clasificación.
 """)
 
 # ==================================================
@@ -155,34 +97,12 @@ La aplicación permite cargar imágenes del fruto y obtener una predicción auto
 with st.expander("🧠 Cómo Interpretar los Resultados"):
 
     st.markdown("""
+- 🟢 **Unripe**: Banano verde.
+- 🟡 **Half_Ripe**: Banano semimaduro.
+- ✅ **Ripe**: Banano maduro.
+- 🟤 **Overripe**: Banano sobremaduro.
 
-### Categorías del Modelo
-
-🟢 Unripe
-- Banano verde.
-- No recomendado para consumo inmediato.
-
-🟡 Half_Ripe
-- Banano parcialmente maduro.
-- Próximo a alcanzar la maduración óptima.
-
-✅ Ripe
-- Banano maduro.
-- Estado ideal para consumo.
-
-🟤 Overripe
-- Banano sobremaduro.
-- Recomendado para consumo inmediato o elaboración de postres.
-
-### Nivel de Confianza
-
-El porcentaje de confianza representa qué tan seguro está el modelo respecto a la clasificación obtenida.
-
-- Mayor a 90% → Muy alta confianza.
-- Entre 80% y 90% → Alta confianza.
-- Entre 60% y 80% → Confianza aceptable.
-- Menor a 60% → Se recomienda verificar la calidad de la imagen.
-
+La confianza indica el porcentaje de seguridad del modelo respecto a la predicción realizada.
 """)
 
 # ==================================================
@@ -192,17 +112,15 @@ El porcentaje de confianza representa qué tan seguro está el modelo respecto a
 with st.expander("📊 Métricas del Modelo"):
 
     st.markdown("""
-
 | Métrica | Valor |
 |----------|----------|
 | Accuracy | 95% |
 | Precision | 94% |
 | Recall | 95% |
-| F1-Score | 94% |
+| F1 Score | 94% |
 | AUC | 97% |
 
-**Nota:** Reemplacen estos valores por las métricas reales obtenidas en el notebook.
-
+*Reemplacen estos valores por los reales obtenidos en el notebook.*
 """)
 
 # ==================================================
@@ -211,20 +129,16 @@ with st.expander("📊 Métricas del Modelo"):
 
 with st.expander("🏗️ Arquitectura de la Solución"):
 
-    st.markdown("""
+    st.code("""
 Usuario
-↓
-Aplicación Web Streamlit
-↓
-API REST FastAPI
-↓
-Microsoft Azure Container Apps
-↓
+   ↓
+Aplicación Streamlit
+   ↓
+API REST (Azure)
+   ↓
 Modelo Deep Learning
-↓
-Clasificación de Madurez
-
-La solución utiliza una arquitectura cliente-servidor donde la aplicación web consume una API REST desplegada en Microsoft Azure para realizar inferencias en tiempo real.
+   ↓
+Predicción
 """)
 
 # ==================================================
@@ -243,23 +157,154 @@ with col2:
 
 st.divider()
 
+# ==================================================
+# ESTADO API
+# ==================================================
+
+st.subheader("☁️ Estado del Servicio")
+
+try:
+
+    response = requests.get(API_HEALTH, timeout=10)
+
+    if response.status_code == 200:
+        st.success("✅ API conectada correctamente en Microsoft Azure")
+    else:
+        st.warning("⚠️ La API respondió pero presentó una novedad.")
+
+except Exception as e:
+
+    st.error(f"❌ Error de conexión: {e}")
+
+st.divider()
+
+# ==================================================
+# CLASIFICACIÓN
+# ==================================================
+
+st.subheader("📷 Clasificación de Imagen")
+
+archivo = st.file_uploader(
+    "Seleccione una imagen",
+    type=["jpg", "jpeg", "png", "webp"]
+)
+
+if archivo is not None:
+
+    st.image(
+        archivo,
+        caption="Imagen cargada",
+        use_container_width=True
+    )
+
+    if st.button("🔍 Analizar Imagen"):
+
+        with st.spinner("Analizando imagen..."):
+
+            try:
+
+                files = {
+                    "file": (
+                        archivo.name,
+                        archivo.getvalue(),
+                        archivo.type
+                    )
+                }
+
+                respuesta = requests.post(
+                    API_PREDICT,
+                    files=files,
+                    timeout=30
+                )
+
+                if respuesta.status_code == 200:
+
+                    resultado = respuesta.json()
+
+                    clase = resultado.get(
+                        "clase_predicha",
+                        "Sin dato"
+                    )
+
+                    confianza = resultado.get(
+                        "confianza",
+                        0
+                    )
+
+                    probabilidades = resultado.get(
+                        "probabilidades",
+                        {}
+                    )
+
+                    st.success(
+                        f"Clase Predicha: {clase}"
+                    )
+
+                    st.metric(
+                        "Confianza",
+                        f"{confianza*100:.2f}%"
+                    )
+
+                    st.progress(float(confianza))
+
+                    if probabilidades:
+
+                        st.subheader("📈 Probabilidades")
+
+                        df = pd.DataFrame({
+                            "Clase": list(probabilidades.keys()),
+                            "Probabilidad (%)": [
+                                v * 100
+                                for v in probabilidades.values()
+                            ]
+                        })
+
+                        st.bar_chart(
+                            df.set_index("Clase")
+                        )
+
+                    st.subheader("📝 Interpretación")
+
+                    if clase == "Unripe":
+                        st.warning("Banano verde.")
+
+                    elif clase == "Half_Ripe":
+                        st.info("Banano semimaduro.")
+
+                    elif clase == "Ripe":
+                        st.success("Banano maduro.")
+
+                    elif clase == "Overripe":
+                        st.error("Banano sobremaduro.")
+
+                else:
+
+                    st.error(
+                        f"Error de API: {respuesta.status_code}"
+                    )
+
+            except Exception as e:
+
+                st.error(
+                    f"Error: {e}"
+                )
+
+st.divider()
+
 st.markdown("""
-### BananaVision AI
+<div class="footer">
+
+🍌 BananaVision AI
 
 Proyecto Final de Visión por Computador
 
 Maestría en Inteligencia Artificial
 
-Tecnologías:
-- Python
-- Streamlit
-- FastAPI
-- Microsoft Azure
-- Deep Learning
+Adriana Milena Huertas Martín
 
-**Integrantes**
-- Adriana Milena Huertas Martín
-- Adriana Patricia Fernández Infante
+Adriana Patricia Fernández Infante
 
 2026
-""")
+
+</div>
+""", unsafe_allow_html=True)
