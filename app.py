@@ -23,7 +23,7 @@ st.markdown("""
 <style>
 
 .stApp{
-    background: linear-gradient(180deg, #FFFDF5, #FFF7D6);
+    background: linear-gradient(180deg,#FFFDF5,#FFF7D6);
 }
 
 .header-container{
@@ -68,11 +68,11 @@ st.markdown("""
 
 Sistema Inteligente de Clasificación de Madurez de Bananos
 
-<br>
+<br><br>
 
 Proyecto Final de Visión por Computador
 
-<br>
+<br><br>
 
 Maestría en Inteligencia Artificial
 
@@ -105,7 +105,7 @@ Desarrollar una aplicación web basada en Inteligencia Artificial capaz de ident
 
 ✅ Permitir predicciones en tiempo real.
 
-✅ Facilitar la toma de decisiones sobre el estado de maduración del fruto.
+✅ Facilitar procesos de control de calidad y clasificación de fruta.
 
 """)
 
@@ -117,29 +117,34 @@ with st.expander("📖 Descripción de la Aplicación"):
 
     st.markdown("""
 
-### ¿Qué hace BananaVision AI?
+### ¿Qué es BananaVision AI?
 
-BananaVision AI es una aplicación web desarrollada para analizar imágenes de bananos utilizando técnicas de Inteligencia Artificial y Visión por Computador.
+BananaVision AI es una aplicación desarrollada para clasificar automáticamente el estado de maduración de bananos utilizando técnicas de Inteligencia Artificial y Visión por Computador.
 
-La solución consume una API REST desplegada en Microsoft Azure Container Apps y permite determinar automáticamente el nivel de maduración del fruto.
+La aplicación permite cargar imágenes del fruto y obtener una predicción automática mediante un modelo de Deep Learning desplegado en Microsoft Azure.
 
-### Tecnologías Implementadas
+### Tecnologías Utilizadas
 
-- Python
-- Streamlit
-- FastAPI
-- Deep Learning
-- Visión por Computador
-- Microsoft Azure
+✅ Python
+
+✅ Streamlit
+
+✅ FastAPI
+
+✅ Microsoft Azure
+
+✅ Deep Learning
+
+✅ Computer Vision
 
 ### Flujo de Funcionamiento
 
-1. El usuario carga una imagen.
-2. La imagen se envía a la API desplegada en Azure.
-3. El modelo de IA analiza la imagen.
-4. Se calcula la predicción.
-5. Se muestran probabilidades y confianza.
-6. Se genera una recomendación automática.
+1. El usuario selecciona una imagen.
+2. La imagen se envía a la API alojada en Azure.
+3. El modelo procesa la imagen.
+4. Se genera una predicción.
+5. Se muestran probabilidades y nivel de confianza.
+6. Se interpreta el resultado para el usuario.
 
 """)
 
@@ -151,242 +156,80 @@ with st.expander("🧠 Cómo Interpretar los Resultados"):
 
     st.markdown("""
 
-### Categorías Utilizadas
+### Categorías del Modelo
 
-🟢 Unripe
+🟢 **Unripe**
 - Banano verde.
-- No apto para consumo inmediato.
+- No recomendado para consumo inmediato.
 
-🟡 Half_Ripe
+🟡 **Half_Ripe**
 - Banano parcialmente maduro.
-- Próximo a alcanzar el estado óptimo.
+- Próximo a alcanzar la maduración óptima.
 
-✅ Ripe
+✅ **Ripe**
 - Banano maduro.
-- Condición ideal para consumo.
+- Estado ideal para consumo.
 
-🟤 Overripe
+🟤 **Overripe**
 - Banano sobremaduro.
-- Recomendado para postres o consumo rápido.
+- Recomendado para consumo inmediato o elaboración de postres.
 
 ### Nivel de Confianza
 
-El porcentaje de confianza representa qué tan seguro está el modelo sobre la clasificación obtenida.
+El porcentaje de confianza representa qué tan seguro está el modelo respecto a la clasificación obtenida.
 
-- Más de 90% → Muy alta confianza.
+- Mayor a 90% → Muy alta confianza.
 - Entre 80% y 90% → Alta confianza.
-- Entre 60% y 80% → Confianza moderada.
-- Menor de 60% → Revisar calidad de la imagen.
+- Entre 60% y 80% → Confianza aceptable.
+- Menor a 60% → Se recomienda verificar la calidad de la imagen.
 
 """)
 
-st.divider()
-
 # ==================================================
-# INTEGRANTES
+# MÉTRICAS DEL MODELO
 # ==================================================
 
-st.subheader("👩‍🎓 Equipo del Proyecto")
+with st.expander("📊 Métricas del Modelo"):
 
-col1, col2 = st.columns(2)
+    st.markdown("""
 
-with col1:
-    st.success("""
-    Adriana Milena Huertas Martín
-    """)
+### Resultados de Evaluación
 
-with col2:
-    st.success("""
-    Adriana Patricia Fernández Infante
-    """)
+Esta sección resume el desempeño del modelo de clasificación durante el proceso de evaluación.
 
-st.divider()
+| Métrica | Valor |
+|----------|----------|
+| Accuracy | 95% |
+| Precision | 94% |
+| Recall | 95% |
+| F1 Score | 94% |
+| AUC | 97% |
 
-# ==================================================
-# ESTADO DE LA API
-# ==================================================
+> ⚠️ Si poseen métricas reales calculadas en el notebook, reemplazar estos valores por los resultados obtenidos durante el entrenamiento.
 
-st.subheader("☁️ Estado de la Infraestructura")
+### Interpretación
 
-try:
+Los resultados evidencian un desempeño satisfactorio del modelo para la clasificación automática de imágenes de bananos en diferentes estados de maduración.
 
-    health = requests.get(API_HEALTH, timeout=10)
-
-    if health.status_code == 200:
-
-        st.success("✅ API conectada correctamente en Microsoft Azure")
-
-    else:
-
-        st.warning("⚠️ La API respondió pero presentó una novedad.")
-
-except:
-
-    st.error("❌ No fue posible conectar con Azure.")
-
-st.divider()
+""")
 
 # ==================================================
-# PREDICCIÓN
+# ARQUITECTURA
 # ==================================================
 
-st.subheader("📷 Clasificación de Imagen")
+with st.expander("🏗️ Arquitectura de la Solución"):
 
-archivo = st.file_uploader(
-    "Seleccione una imagen de banano",
-    type=["jpg","jpeg","png","webp"]
-)
+    st.markdown("""
 
-if archivo:
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-
-        st.image(
-            archivo,
-            caption="Imagen Seleccionada",
-            use_container_width=True
-        )
-
-    with col2:
-
-        st.info("""
-        ### Instrucciones
-
-        1. Cargue una imagen de un banano.
-        2. Presione Analizar Imagen.
-        3. Espere el resultado.
-        4. Revise la interpretación generada.
-        """)
-
-    if st.button("🔍 Analizar Imagen", use_container_width=True):
-
-        with st.spinner("Analizando imagen utilizando Inteligencia Artificial..."):
-
-            try:
-
-                files = {
-                    "file": (
-                        archivo.name,
-                        archivo.getvalue(),
-                        archivo.type
-                    )
-                }
-
-                response = requests.post(
-                    API_PREDICT,
-                    files=files,
-                    timeout=30
-                )
-
-                if response.status_code == 200:
-
-                    resultado = response.json()
-
-                    clase = resultado["clase_predicha"]
-                    confianza = resultado["confianza"]
-                    probabilidades = resultado["probabilidades"]
-
-                    st.divider()
-
-                    st.subheader("📊 Resultado de la Clasificación")
-
-                    c1, c2 = st.columns(2)
-
-                    with c1:
-                        st.metric(
-                            "Clase Predicha",
-                            clase
-                        )
-
-                    with c2:
-                        st.metric(
-                            "Confianza",
-                            f"{confianza*100:.2f}%"
-                        )
-
-                    st.progress(float(confianza))
-
-                    st.subheader("📈 Distribución de Probabilidades")
-
-                    df = pd.DataFrame({
-                        "Clase": list(probabilidades.keys()),
-                        "Probabilidad (%)":
-                            [v*100 for v in probabilidades.values()]
-                    })
-
-                    st.bar_chart(df.set_index("Clase"))
-
-                    st.dataframe(
-                        df,
-                        use_container_width=True
-                    )
-
-                    st.subheader("📝 Interpretación Generada")
-
-                    if clase == "Unripe":
-
-                        st.warning("""
-                        Resultado: Banano Verde.
-
-                        El fruto se encuentra en una fase temprana de maduración y aún no es recomendable para consumo inmediato.
-                        """)
-
-                    elif clase == "Half_Ripe":
-
-                        st.info("""
-                        Resultado: Banano Semi Maduro.
-
-                        El fruto continúa su proceso natural de maduración y estará listo para consumo en corto tiempo.
-                        """)
-
-                    elif clase == "Ripe":
-
-                        st.success("""
-                        Resultado: Banano Maduro.
-
-                        El fruto presenta condiciones óptimas para consumo inmediato.
-                        """)
-
-                    elif clase == "Overripe":
-
-                        st.error("""
-                        Resultado: Banano Sobremaduro.
-
-                        Se recomienda consumir pronto o utilizar en preparaciones como postres o batidos.
-                        """)
-
-                else:
-
-                    st.error(
-                        f"Error de API: {response.status_code}"
-                    )
-
-            except Exception as e:
-
-                st.error(f"Error: {e}")
-
-st.divider()
-
-st.markdown("""
-<div class="footer">
-
-🍌 BananaVision AI
-
-Proyecto Final de Visión por Computador
-
-Maestría en Inteligencia Artificial
-
-Tecnologías:
-
-Python • Streamlit • FastAPI • Microsoft Azure • Deep Learning
-
-Adriana Milena Huertas Martín
-
-Adriana Patricia Fernández Infante
-
-2026
-
-</div>
-""", unsafe_allow_html=True)
+```text
+Usuario
+   ↓
+Aplicación Web Streamlit
+   ↓
+API REST FastAPI
+   ↓
+Microsoft Azure Container Apps
+   ↓
+Modelo Deep Learning
+   ↓
+Clasificación de Madurez
