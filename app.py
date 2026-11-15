@@ -212,16 +212,54 @@ with st.expander("📊 Métricas del Modelo"):
 with st.expander("🏗️ Arquitectura de la Solución"):
 
     st.markdown("""
-
-```text
 Usuario
-   ↓
+↓
 Aplicación Web Streamlit
-   ↓
+↓
 API REST FastAPI
-   ↓
+↓
 Microsoft Azure Container Apps
-   ↓
+↓
 Modelo Deep Learning
-   ↓
+↓
 Clasificación de Madurez
+
+La solución utiliza una arquitectura cliente-servidor donde la aplicación web consume una API REST desplegada en Microsoft Azure para realizar inferencias en tiempo real.
+""")
+
+# ==================================================
+# INTEGRANTES
+# ==================================================
+
+st.subheader("👩‍🎓 Equipo del Proyecto")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.success("Adriana Milena Huertas Martín")
+
+with col2:
+    st.success("Adriana Patricia Fernández Infante")
+
+st.divider()
+
+st.markdown("""
+### BananaVision AI
+
+Proyecto Final de Visión por Computador
+
+Maestría en Inteligencia Artificial
+
+Tecnologías:
+- Python
+- Streamlit
+- FastAPI
+- Microsoft Azure
+- Deep Learning
+
+**Integrantes**
+- Adriana Milena Huertas Martín
+- Adriana Patricia Fernández Infante
+
+2026
+""")
