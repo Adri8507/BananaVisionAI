@@ -158,19 +158,19 @@ with st.expander("🧠 Cómo Interpretar los Resultados"):
 
 ### Categorías del Modelo
 
-🟢 **Unripe**
+🟢 Unripe
 - Banano verde.
 - No recomendado para consumo inmediato.
 
-🟡 **Half_Ripe**
+🟡 Half_Ripe
 - Banano parcialmente maduro.
 - Próximo a alcanzar la maduración óptima.
 
-✅ **Ripe**
+✅ Ripe
 - Banano maduro.
 - Estado ideal para consumo.
 
-🟤 **Overripe**
+🟤 Overripe
 - Banano sobremaduro.
 - Recomendado para consumo inmediato o elaboración de postres.
 
@@ -186,30 +186,22 @@ El porcentaje de confianza representa qué tan seguro está el modelo respecto a
 """)
 
 # ==================================================
-# MÉTRICAS DEL MODELO
+# MÉTRICAS
 # ==================================================
 
 with st.expander("📊 Métricas del Modelo"):
 
     st.markdown("""
 
-### Resultados de Evaluación
-
-Esta sección resume el desempeño del modelo de clasificación durante el proceso de evaluación.
-
 | Métrica | Valor |
 |----------|----------|
 | Accuracy | 95% |
 | Precision | 94% |
 | Recall | 95% |
-| F1 Score | 94% |
+| F1-Score | 94% |
 | AUC | 97% |
 
-> ⚠️ Si poseen métricas reales calculadas en el notebook, reemplazar estos valores por los resultados obtenidos durante el entrenamiento.
-
-### Interpretación
-
-Los resultados evidencian un desempeño satisfactorio del modelo para la clasificación automática de imágenes de bananos en diferentes estados de maduración.
+**Nota:** Reemplacen estos valores por las métricas reales obtenidas en el notebook.
 
 """)
 
